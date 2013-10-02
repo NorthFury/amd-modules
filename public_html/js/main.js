@@ -39,3 +39,10 @@ requirejs(['pubsub/pub', 'pubsub/sub'], function(pub, sub) {
 
     pub(topic, 'pubsub message');
 });
+
+requirejs(['iterator'], function(iterator) {
+    var i = iterator([5, 7, 9]);
+    while (i.hasNext()) {
+        console.log(i.getNext());
+    }
+});
