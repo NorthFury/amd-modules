@@ -30,3 +30,12 @@ requirejs(['zepto', 'underscore', 'constants', 'text!color.html!strip'], functio
 requirejs(['logger'], function(logger) {
     logger.log("Here comes the log.");
 });
+
+requirejs(['pubsub/pub', 'pubsub/sub'], function(pub, sub) {
+    var topic = 'log-message';
+    sub(topic, function(message) {
+        console.log(message);
+    });
+
+    pub(topic, 'pubsub message');
+});
