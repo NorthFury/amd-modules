@@ -26,3 +26,7 @@ requirejs(['zepto', 'underscore', 'constants', 'text!color.html!strip'], functio
     });
     $(document.body).append(template);
 });
+
+requirejs(['logger'], function(logger) {
+    logger.log("Here comes the log.");
+});
