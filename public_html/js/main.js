@@ -19,3 +19,10 @@ requirejs.config({
 requirejs(['zepto'], function($) {
     $(document.body).append("<div>Hello World!</div>");
 });
+
+requirejs(['zepto', 'underscore', 'constants', 'text!color.html!strip'], function($, _, constants, color) {
+    var template = _.template(color, {
+        color: constants.color
+    });
+    $(document.body).append(template);
+});
