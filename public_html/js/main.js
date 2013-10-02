@@ -46,3 +46,26 @@ requirejs(['iterator'], function(iterator) {
         console.log(i.getNext());
     }
 });
+
+requirejs(['zepto', 'widget/tabs'], function($, tabview) {
+    var tabsContainer = $('<div style="width: 500px;"/>');
+    var myTabs = tabview(tabsContainer);
+
+    myTabs.on('tab-create', function(tab, content) {
+        var closeButton = $('<span class="ui-icon ui-icon-close">Remove Tab</span>');
+        closeButton.appendTo(tab);
+        closeButton.on("click", function() {
+            tab.remove();
+            content.remove();
+        });
+    });
+
+    for (var i = 0; i < 4; i++) {
+        myTabs.addTab({
+            title: 'Tab ' + (i + 1),
+            content: 'Content for tab ' + (i + 1)
+        });
+    }
+
+    $(document.body).append(tabsContainer);
+});
