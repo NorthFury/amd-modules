@@ -1,6 +1,8 @@
 define(['zepto', './observable'], function($, observable) {
     return function(container) {
-        var self = observable();
+        var eventsRegistry = observable();
+
+        var self = {};
         var tabsContainer, contentContainer;
 
         var init = function() {
@@ -42,8 +44,10 @@ define(['zepto', './observable'], function($, observable) {
             tabsContainer.append(tab);
             contentContainer.append(content);
 
-            self.trigger('tab-create', tab, content);
+            eventsRegistry.publish('tab-create', tab, content);
         };
+
+        self.subscribe = eventsRegistry.subscribe;
 
         init();
         return self;

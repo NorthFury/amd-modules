@@ -3,7 +3,7 @@ define(['underscore'], function(_) {
         var self = {};
         var callbacksMap = {};
 
-        self.on = function(event, callback) {
+        self.subscribe = function(event, callback) {
             if (_.isUndefined(callbacksMap[event])) {
                 callbacksMap[event] = [];
             }
@@ -11,7 +11,7 @@ define(['underscore'], function(_) {
             callbacksMap[event].push(callback);
         };
 
-        self.trigger = function(event) {
+        self.publish = function(event) {
             if (_.isUndefined(callbacksMap[event])) {
                 return;
             }
